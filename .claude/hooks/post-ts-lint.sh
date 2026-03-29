@@ -11,7 +11,7 @@ esac
 
 pnpm format "$file" >/dev/null 2>&1 || true
 pnpm lint:fix "$file" >/dev/null 2>&1 || true
-diag="$(pnpm lint "$file" 2>&1 | head -20)"
+diag="$(pnpm lint "$file" 2>&1 | head -20)" || true
 
 if [ -n "$diag" ]; then
   jq -Rn --arg msg "$diag" '{
